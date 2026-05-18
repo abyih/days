@@ -1,1 +1,1 @@
-class Calendar {}
+const getGeezMonth = () => {};
