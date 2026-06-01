@@ -1,3 +1,5 @@
+import { isYearLeap } from "./utils";
+
 const fixed_year_from_gregorian = (year: number) => {
   const daysUntilYear = 365 * (year - 1);
   const leapYearsCount =
@@ -14,9 +16,6 @@ const fixed_month_from_gregorian = (year: number, month: number) => {
   const monthDays = elapsed30Days + elapsed31stDays - correction;
   return monthDays;
 };
-
-const isYearLeap = (year: number) =>
-  (year % 4 == 0 && year % 100 != 0) || (year % 100 == 0 && year % 400 == 0);
 
 const fixed_from_gregorian = (year: number, month: number, day: number) => {
   const yearDays = fixed_year_from_gregorian(year);
