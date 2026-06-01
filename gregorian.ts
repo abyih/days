@@ -42,17 +42,10 @@ const gregorian_year_from_fixed = (fixed: number) => {
 
 const gregorian_from_fixed = (fixed: number) => {
   const { year, daysWithinYear } = gregorian_year_from_fixed(fixed);
-  const correction = isYearLeap(year)
-    ? daysWithinYear <= 60
-      ? 0
-      : 1
-    : daysWithinYear <= 60
-      ? 0
-      : 2;
-  const adjustedDays = daysWithinYear + correction;
+  const correction =
+    fixed < fixed_from_gregorian(year, 3, 1) ? 0 : isYearLeap(year) ? 1 : 2;
+  const adjustedDays = fixed - fixed_from_gregorian(year, 1, 1) + correction;
   const month = Math.floor((12 * adjustedDays + 373) / 367);
-  const day = daysWithinYear - fixed_month_from_gregorian(year, month);
+  const day = fixed - fixed_from_gregorian(year, month, 1) + 1;
   console.log(year, month, day);
 };
-
-gregorian_from_fixed(fixed_from_gregorian(2026, 6, 10));
