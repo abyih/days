@@ -1,5 +1,5 @@
 {
-  "name": "days",
+  "name": "yeha-days",
   "private": true,
   "devDependencies": {
     "@types/bun": "latest"

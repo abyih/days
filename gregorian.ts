@@ -17,7 +17,11 @@ const fixed_month_from_gregorian = (year: number, month: number) => {
   return monthDays;
 };
 
-const fixed_from_gregorian = (year: number, month: number, day: number) => {
+export const fixed_from_gregorian = (
+  year: number,
+  month: number,
+  day: number,
+) => {
   const yearDays = fixed_year_from_gregorian(year);
   const monthDays = fixed_month_from_gregorian(year, month);
 
@@ -39,12 +43,12 @@ const gregorian_year_from_fixed = (fixed: number) => {
   return { year, daysWithinYear: l4 % 365 };
 };
 
-const gregorian_from_fixed = (fixed: number) => {
+export const gregorian_from_fixed = (fixed: number) => {
   const { year, daysWithinYear } = gregorian_year_from_fixed(fixed);
   const correction =
     fixed < fixed_from_gregorian(year, 3, 1) ? 0 : isYearLeap(year) ? 1 : 2;
   const adjustedDays = fixed - fixed_from_gregorian(year, 1, 1) + correction;
   const month = Math.floor((12 * adjustedDays + 373) / 367);
   const day = fixed - fixed_from_gregorian(year, month, 1) + 1;
-  console.log(year, month, day);
+  return { year, month, day };
 };
