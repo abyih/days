@@ -1,20 +1,9 @@
 import { fixed_from_gregorian, gregorian_from_fixed } from "./gregorian";
 import { geez_from_fixed, fixed_from_geez } from "./geez";
-import { YearFirstRegEX } from "./regex";
+import { dayMap, YearFirstRegEX } from "./data";
 import { parseYearFirst } from "./utils";
 import { geez_hour_from_gregorian } from "./time";
 import type { dayMapIndex } from "./types";
-
-const dayMap = {
-  "0": "ሰንበት",
-  "1": "ሰኑይ",
-  "2": "ሰሉስ",
-  "3": "ረቡዕ",
-  "4": "ሓሙስ",
-  "5": "ዓርቢ",
-  "6": "ቀዳም",
-};
-
 export class GeezDate {
   private year: number = 0;
   private month: number = 1;
@@ -33,6 +22,7 @@ export class GeezDate {
     minutes?: number,
     seconds?: number,
   );
+  constructor(...args: any[]);
 
   constructor(...args: any[]) {
     if (args.length == 0) {
