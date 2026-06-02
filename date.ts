@@ -1,9 +1,9 @@
 import { fixed_from_gregorian, gregorian_from_fixed } from "./gregorian";
 import { geez_from_fixed, fixed_from_geez } from "./geez";
-import { dayMap, YearFirstRegEX } from "./data";
+import { dayMap, monthMap, YearFirstRegEX } from "./data";
 import { parseYearFirst } from "./utils";
 import { geez_hour_from_gregorian } from "./time";
-import type { dayMapIndex } from "./types";
+import type { dayMapIndex, monthMapIndex } from "./types";
 import { TokenFlags } from "typescript";
 
 export class CustomDate extends Date {
@@ -126,6 +126,15 @@ export class GeezDate {
 
   getSeconds() {
     return this.second;
+  }
+
+  getMonthName() {
+    const monthIndex = this.month.toString() as monthMapIndex;
+    return monthMap[monthIndex];
+  }
+
+  toString() {
+    return `${this.getDayName()} ${this.getMonthName()} ${this.date} ${this.year} ${this.hour}:${this.minute}:${this.second}`;
   }
 
   static parse(value: string) {

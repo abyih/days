@@ -29,7 +29,7 @@ bun add yeha-days
 The `GeezDate` class is the easiest way to work with Geez dates. It behaves much like the standard `Date` object.
 
 ```typescript
-import { GeezDate } from "./date";
+import { GeezDate } from "yeha-days/date";
 
 // Get the current Geez date (defaults to now)
 const today = new GeezDate();
@@ -46,35 +46,20 @@ console.log(historicDate.getDay()); // "ሰንበት" (Sunday)
 const parsedDate = new GeezDate("2014-12-30 12:30");
 ```
 
-### Low-level Conversions
+### High-level Conversions
 
-If you just need raw conversion numbers, you can use the internal conversion utilities.
-
-```typescript
-import { fixed_from_geez, geez_from_fixed } from "./geez";
-import { fixed_from_gregorian, gregorian_from_fixed } from "./gregorian";
-
-// Convert Gregorian to Geez manually
-const fixed = fixed_from_gregorian(2026, 6, 2);
-const geezDate = geez_from_fixed(fixed);
-console.log(geezDate); // { year: 2018, month: 9, date: 25 }
-```
-
-## 📖 Key Concepts
-
-### The "Fixed" Date
-
-Internally, `yeha-days` uses a "fixed" date representation (Rata Die). This represents the number of days since January 1st, Year 1 (Gregorian). This allows for highly accurate calculations across different calendar systems.
-
-### Geez Hours
-
-In the Geez tradition, the 12-hour clock often starts "at dawn." `yeha-days` includes utilities to convert Gregorian 24-hour time to Geez time conventions.
+For quick conversions, use the standalone utility functions. They provide a simple way to transition between calendars without manually managing objects.
 
 ```typescript
-import { geez_hour_from_gregorian } from "./time";
+import { gregorian_to_geez, geez_to_gregorian } from "yeha-days";
 
-// 8 AM Gregorian is 2:00 in the Geez morning clock
-console.log(geez_hour_from_gregorian(8)); // 2
+// Convert Gregorian to Geez
+const geez = gregorian_to_geez(2026, 6, 3);
+console.log(geez.toString());
+
+// Convert Geez back to Gregorian
+const gregorian = geez_to_gregorian(2018, 9, 26);
+console.log(gregorian.toDateString()); // Wed Jun 03 2026
 ```
 
 ## 📜 License

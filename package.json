@@ -1,7 +1,7 @@
 {
   "name": "yeha-days",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "description": "An elegant conversion utiltiy between Geez and Gregorian Calendars",
   "homepage": "https://github.com/abyih/days#readme",
   "bugs": {
