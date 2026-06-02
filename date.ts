@@ -3,6 +3,7 @@ import { geez_from_fixed, fixed_from_geez } from "./geez";
 import { YearFirstRegEX } from "./regex";
 import { parseYearFirst } from "./utils";
 import { geez_hour_from_gregorian } from "./time";
+import type { dayMapIndex } from "./types";
 
 const dayMap = {
   "0": "ሰንበት",
@@ -14,35 +15,7 @@ const dayMap = {
   "6": "ቀዳም",
 };
 
-type dayMapIndex = "0" | "1" | "2" | "3" | "4" | "5" | "6";
-
-type GeezDateType = {
-  year: number;
-  month: number;
-  date: number;
-  hours: number;
-  minute: number;
-  second: number;
-};
-
-// interface GeezDate {}
-
-// interface GeezDateConstructor {
-//   new (): GeezDate;
-//   new (value: number | string): GeezDate;
-//   new (
-//     year: number,
-//     month?: number,
-//     date?: number,
-//     hours?: number,
-//     minute?: number,
-//     second?: number,
-//   ): GeezDate;
-
-//   parse(): GeezDateType | null;
-// }
-
-class GeezDate {
+export class GeezDate {
   private year: number = 0;
   private month: number = 1;
   private date: number = 1;
@@ -143,15 +116,3 @@ class GeezDate {
     }
   }
 }
-
-const date = new GeezDate("2014-12-30 12:30");
-console.log(
-  date.getFullYear(),
-  date.getMonth(),
-  date.getDate(),
-  date.getDay(),
-  date.getHours(),
-  date.getMinutes(),
-  date.getSeconds(),
-);
-date.getDay();
