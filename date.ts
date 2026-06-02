@@ -4,6 +4,31 @@ import { dayMap, YearFirstRegEX } from "./data";
 import { parseYearFirst } from "./utils";
 import { geez_hour_from_gregorian } from "./time";
 import type { dayMapIndex } from "./types";
+import { TokenFlags } from "typescript";
+
+export class CustomDate extends Date {
+  private language: "gz" | "en" = "en";
+
+  constructor(...args: any[]) {
+    super(...(args as []));
+  }
+
+  override getDay() {
+    return (
+      fixed_from_gregorian(
+        this.getFullYear(),
+        this.getMonth(),
+        this.getDate(),
+      ) % 7
+    );
+  }
+
+  getDayName() {
+    const dayIndex = this.getDay().toString() as dayMapIndex;
+    return dayMap[dayIndex][this.language];
+  }
+}
+
 export class GeezDate {
   private year: number = 0;
   private month: number = 1;
@@ -11,6 +36,7 @@ export class GeezDate {
   private hour: number = 0;
   private minute: number = 0;
   private second: number = 0;
+  private language: "gz" | "en" = "gz";
 
   constructor();
   constructor(value: number | string);
@@ -34,11 +60,11 @@ export class GeezDate {
           today.getDate(),
         ),
       );
-      const hours = geez_hour_from_gregorian(today.getHours());
+      // const hours = geez_hour_from_gregorian(today.getHours());
       this.year = year;
       this.month = month;
       this.date = date;
-      this.hour = hours;
+      this.hour = today.getHours();
       this.minute = today.getMinutes();
       this.second = today.getSeconds();
     } else if (args.length == 1) {
@@ -82,9 +108,12 @@ export class GeezDate {
   }
 
   getDay() {
-    const day = fixed_from_geez(this.year, this.month, this.date) % 7;
-    const dayIndex = day.toString() as dayMapIndex;
-    return dayMap[dayIndex];
+    return fixed_from_geez(this.year, this.month, this.date) % 7;
+  }
+
+  getDayName() {
+    const dayIndex = this.getDay().toString() as dayMapIndex;
+    return dayMap[dayIndex][this.language];
   }
 
   getHours() {

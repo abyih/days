@@ -3,11 +3,17 @@ export const YearFirstRegEX =
 // const YearLastRegEx = /[]/;
 
 export const dayMap = {
-  "0": "ሰንበት",
-  "1": "ሰኑይ",
-  "2": "ሰሉስ",
-  "3": "ረቡዕ",
-  "4": "ሓሙስ",
-  "5": "ዓርቢ",
-  "6": "ቀዳም",
+  "0": {
+    gz: "ሰንበት",
+    en: "Sunday",
+  },
+  "1": {
+    gz: "ሰኑይ",
+    en: "Monday",
+  },
+  "2": { gz: "ሰሉስ", en: "Tuesday" },
+  "3": { gz: "ረቡዕ", en: "Wednesday" },
+  "4": { gz: "ሓሙስ", en: "Thursday" },
+  "5": { gz: "ዓርቢ", en: "Friday" },
+  "6": { gz: "ቀዳም", en: "Saturday" },
 };

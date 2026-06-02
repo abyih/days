@@ -8,5 +8,3 @@ export type GeezDateType = {
   minute: number;
   second: number;
 };
-
-export type GregorianDateTypes = {};

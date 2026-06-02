@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "bun-types": "^1.3.14",
-    "typescript": "^5.9.3",
+    "typescript": "^5",
     "undici-types": "^7.24.6"
   },
   "devDependencies": {
