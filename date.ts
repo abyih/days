@@ -2,6 +2,7 @@ import { fixed_from_gregorian, gregorian_from_fixed } from "./gregorian";
 import { geez_from_fixed, fixed_from_geez } from "./geez";
 import { YearFirstRegEX } from "./regex";
 import { parseYearFirst } from "./utils";
+import { geez_hour_from_gregorian } from "./time";
 
 const dayMap = {
   "0": "ሰንበት",
@@ -70,9 +71,13 @@ class GeezDate {
           today.getDate(),
         ),
       );
+      const hours = geez_hour_from_gregorian(today.getHours());
       this.year = year;
       this.month = month;
       this.date = date;
+      this.hour = hours;
+      this.minute = today.getMinutes();
+      this.second = today.getSeconds();
     } else if (args.length == 1) {
       if (typeof args[0] == "string") {
         const result = GeezDate.parse(args[0]);
@@ -119,6 +124,18 @@ class GeezDate {
     return dayMap[dayIndex];
   }
 
+  getHours() {
+    return this.hour;
+  }
+
+  getMinutes() {
+    return this.minute;
+  }
+
+  getSeconds() {
+    return this.second;
+  }
+
   static parse(value: string) {
     const result = value.match(YearFirstRegEX);
     if (result != null) {
@@ -127,6 +144,14 @@ class GeezDate {
   }
 }
 
-const date = new GeezDate("2014-12-30");
-console.log(date.getFullYear(), date.getMonth(), date.getDate(), date.getDay());
+const date = new GeezDate("2014-12-30 12:30");
+console.log(
+  date.getFullYear(),
+  date.getMonth(),
+  date.getDate(),
+  date.getDay(),
+  date.getHours(),
+  date.getMinutes(),
+  date.getSeconds(),
+);
 date.getDay();
