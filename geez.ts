@@ -20,6 +20,6 @@ export const geez_from_fixed = (fixed: number) => {
     cycle + commonDaysInCycle + leapYears - 1 - ((leapYears * shift) % cycle); // 1463;
   const year = Math.floor((cycle * geezDays + numeratorConstant) / denominator);
   const month = Math.floor((fixed - fixed_from_geez(year, 1, 1)) / 30) + 1;
-  const day = fixed - fixed_from_geez(year, month, 1) + 1;
-  return { year, month, day };
+  const date = fixed - fixed_from_geez(year, month, 1) + 1;
+  return { year, month, date };
 };

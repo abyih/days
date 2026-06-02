@@ -7,11 +7,12 @@ export const parseYearFirst = (value: RegExpMatchArray) => {
   const month = m ? parseInt(m) : 1;
   const date = d ? parseInt(d) : 1;
   const hour = h ? parseInt(h) : 0;
-  const minutes = min ? parseInt(min) : 0;
-  const seconds = s ? parseInt(s) : 0;
+  const minute = min ? parseInt(min) : 0;
+  const second = s ? parseInt(s) : 0;
   if (year) {
     if (
       month > 13 ||
+      date > 30 ||
       (isYearLeap(year) && month == 13 && date > 6) ||
       (month == 13 && date > 5)
     )
@@ -21,8 +22,8 @@ export const parseYearFirst = (value: RegExpMatchArray) => {
       month,
       date,
       hour,
-      minutes,
-      seconds,
+      minute,
+      second,
     };
   }
   return null;

@@ -49,6 +49,6 @@ export const gregorian_from_fixed = (fixed: number) => {
     fixed < fixed_from_gregorian(year, 3, 1) ? 0 : isYearLeap(year) ? 1 : 2;
   const adjustedDays = fixed - fixed_from_gregorian(year, 1, 1) + correction;
   const month = Math.floor((12 * adjustedDays + 373) / 367);
-  const day = fixed - fixed_from_gregorian(year, month, 1) + 1;
-  return { year, month, day };
+  const date = fixed - fixed_from_gregorian(year, month, 1) + 1;
+  return { year, month, date };
 };
