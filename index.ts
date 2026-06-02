@@ -2,6 +2,8 @@ import { fixed_from_gregorian, gregorian_from_fixed } from "./gregorian";
 import { geez_from_fixed, fixed_from_geez } from "./geez";
 import { CustomDate, GeezDate } from "./date";
 
+export { GeezDate, CustomDate };
+
 export const geez_to_gregorian = (...args: any[]) => {
   try {
     const geezDate = new GeezDate(...args);

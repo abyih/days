@@ -1,8 +1,8 @@
 {
   "name": "yeha-days",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
-  "description": "An elegant conversion utiltiy between Geez and Gregorian Calendars",
+  "description": "An elegant conversion utility between Geez and Gregorian Calendars",
   "homepage": "https://github.com/abyih/days#readme",
   "bugs": {
     "url": "https://github.com/abyih/days/issues"
@@ -14,8 +14,13 @@
   "license": "MIT",
   "author": "AbyiH",
   "type": "module",
-  "main": "index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
